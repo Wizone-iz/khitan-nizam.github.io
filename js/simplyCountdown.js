@@ -126,9 +126,9 @@
                     jam: 'hour',
                     menit: 'minute',
                     detik: 'second',
-                    pluralLetter: '.'
+                    pluralLetter: 's'
                 },
-                plural: true,
+                plural: false,
                 inline: false,
                 enableUtc: true,
                 onEnd: function () {
