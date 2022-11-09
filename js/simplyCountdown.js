@@ -122,10 +122,10 @@
                 minutes: 0,
                 seconds: 0,
                 words: {
-                    days: 'hari',
-                    hours: 'jam',
-                    minutes: 'menit',
-                    seconds: 'detik',
+                    hari: 'day',
+                    jam: 'hour',
+                    menit: 'minute',
+                    detik: 'second',
                     pluralLetter: 's'
                 },
                 plural: true,
