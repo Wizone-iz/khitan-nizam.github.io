@@ -126,7 +126,7 @@
                     jam: 'hour',
                     menit: 'minute',
                     detik: 'second',
-                    pluralLetter: ''
+                    pluralLetter: '.'
                 },
                 plural: true,
                 inline: false,
