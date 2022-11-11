@@ -82,13 +82,17 @@
 							<h1>Muhammad Nizam Maulana</h1>
 							<h2>Putra Bapak Nanang & Ibu Siti Mahmudah</h2>
 							<div class="simply-countdown simply-countdown-one"></div>
-							<p><a href="#" class="btn btn-default btn-sm">Simpan Tanggal Acara</a></p>
+   						 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+							<link rel="stylesheet" type="text/css" href="css/jquery.countdown.css" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
+
+
+	
 
 	<div id="fh5co-couple">
 		<div class="container">
@@ -170,6 +174,35 @@
 	</div>
 
 
+	<!--bagian map-->
+	<div id="map" class="fh5co-map"></div>
+		<!-- END map -->
+
+
+ <!--test map-->
+            <!-- Begin Lokasi Section -->
+            <div class="section-light" id="lokasi" data-aos="fade-in" data-aos-easing="linear" >
+				<div class="container">
+				  <div class="column is-12 regular-section">
+				  </div>
+				  <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=penasapan%20kebulusan%20kebumen&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123 movies</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google maps on website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+				  <div class="mapouter"><div class="gmap_canvas"><iframe width="430" height="237" id="gmap_canvas" src="https://maps.google.com/maps?q=simpang%20lima%20kebulusan&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:237px;width:430px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to wordpress</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:237px;width:430px;}</style></div></div>
+				  <div class="has-text-centered">
+					<a href="https://www.google.com/maps/dir//''/@-7.6700442,109.6237995,17.61z/data=!4m8!4m7!1m0!1m5!1m1!1s0x0:0x407eefc7e938e1b1!2m2!1d109.6249052!2d-7.6697086" class="button btn-arah" data-aos="fade-right">
+					  <i class="far fa-directions"></i>
+					  <p>          </p>
+					  <p>          </p>
+					  <p>          </p>
+					  &nbsp;&nbsp;Petunjuk Arah
+					</a>
+				  </div>
+				</div>
+			  </div>
+		<!-- End Lokasi Content -->
+ <!--end test map-->
+
+
+	<!--ini bagian footer-->
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
 
@@ -209,25 +242,34 @@
 	<script src="js/magnific-popup-options.js"></script>
 
 	<!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
-	<script src="js/simplyCountdown.js"></script>
+	<script src="js/jquery.coundown.js"></script>
+
+		<!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
+		<script src="js/simplyCountdown.js"></script>
+
+	<!-- Google Map -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+	<script src="js/google_map.js"></script>
+
 	<!-- Main -->
 	<script src="js/main.js"></script>
+
 
 	<script>
     var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
 
     // default example
     simplyCountdown('.simply-countdown-one', {
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate()
+        year: d.getFullYear(2022),
+        month: d.getMonth(11) + 1,
+        day: d.getDate(27)
     });
 
     //jQuery example
     $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
+        year: d.getFullYear(2022),
+        month: d.getMonth(11) + 1,
+        day: d.getDate(27),
         enableUtc: false
     });
 </script>
