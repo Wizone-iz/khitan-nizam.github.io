@@ -89,17 +89,17 @@
      * Function that create full countdown DOM elements calling createCountdownElt
      * @param parameters
      * @param countdown
-     * @returns {{haris: (*|Element), jam: (*|Element), menits: (*|Element), detik: (*|Element)}}
+     * @returns {{days: (*|Element), hours: (*|Element), minutes: (*|Element), seconds: (*|Element)}}
      */
     createElements = function (parameters, countdown) {
         var spanTag;
 
         if (!parameters.inline) {
             return {
-                haris: createCountdownElt(countdown, parameters, 'simply-haris-section'),
-                jam: createCountdownElt(countdown, parameters, 'simply-jam-section'),
-                menits: createCountdownElt(countdown, parameters, 'simply-menits-section'),
-                detik: createCountdownElt(countdown, parameters, 'simply-detik-section')
+                days: createCountdownElt(countdown, parameters, 'simply-days-section'),
+                hours: createCountdownElt(countdown, parameters, 'simply-hours-section'),
+                minutes: createCountdownElt(countdown, parameters, 'simply-minutes-section'),
+                seconds: createCountdownElt(countdown, parameters, 'simply-seconds-section')
             };
         }
 
@@ -112,21 +112,21 @@
      * simplyCountdown, create and display the coundtown.
      * @param elt
      * @param args (parameters)
-     */2022
+     */
     simplyCountdown = function (elt, args) {
         var parameters = extend({
                 year: 2022,
                 month: 11,
-                hari: 27,
-                jam: 0,
-                menits: 0,
-                detik: 0,
+                day: 27,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
                 words: {
-                    hari: 'hari',
-                    jam: 'hour',
-                    menit: 'menit',
-                    detik: 'second',
-                    pluralLetter: 's'
+                    days: 'hari',
+                    hours: 'jam',
+                    minutes: 'menit',
+                    seconds: 'detik',
+                    pluralLetter: '.'
                 },
                 plural: true,
                 inline: false,
@@ -146,20 +146,20 @@
             targetTmpDate,
             now,
             nowUtc,
-            detikLeft,
-            haris,
-            jam,
-            menits,
-            detik,
+            secondsLeft,
+            days,
+            hours,
+            minutes,
+            seconds,
             cd = document.querySelectorAll(elt);
 
         targetTmpDate = new Date(
             parameters.year,
             parameters.month - 1,
-            parameters.hari,
-            parameters.jam,
-            parameters.menits,
-            parameters.detik
+            parameters.day,
+            parameters.hours,
+            parameters.minutes,
+            parameters.seconds
         );
 
         if (parameters.enableUtc) {
@@ -167,9 +167,9 @@
                 targetTmpDate.getUTCFullYear(),
                 targetTmpDate.getUTCMonth(),
                 targetTmpDate.getUTCDate(),
-                targetTmpDate.getUTCjam(),
-                targetTmpDate.getUTCmenits(),
-                targetTmpDate.getUTCdetik()
+                targetTmpDate.getUTCHours(),
+                targetTmpDate.getUTCMinutes(),
+                targetTmpDate.getUTCSeconds()
             );
         } else {
             targetDate = targetTmpDate;
@@ -180,83 +180,83 @@
                 refresh;
 
             refresh = function () {
-                var hariWord,
+                var dayWord,
                     hourWord,
-                    menitWord,
+                    minuteWord,
                     secondWord;
 
                 now = new Date();
                 if (parameters.enableUtc) {
                     nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
-                        now.getjam(), now.getmenits(), now.getdetik());
-                    detikLeft = (targetDate - nowUtc.getTime()) / 1000;
+                        now.getHours(), now.getMinutes(), now.getSeconds());
+                    secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
 
                 } else {
-                    detikLeft = (targetDate - now.getTime()) / 1000;
+                    secondsLeft = (targetDate - now.getTime()) / 1000;
                 }
 
-                if (detikLeft > 0) {
-                    haris = parseInt(detikLeft / 86400, 10);
-                    detikLeft = detikLeft % 86400;
+                if (secondsLeft > 0) {
+                    days = parseInt(secondsLeft / 86400, 10);
+                    secondsLeft = secondsLeft % 86400;
 
-                    jam = parseInt(detikLeft / 3600, 10);
-                    detikLeft = detikLeft % 3600;
+                    hours = parseInt(secondsLeft / 3600, 10);
+                    secondsLeft = secondsLeft % 3600;
 
-                    menits = parseInt(detikLeft / 60, 10);
-                    detik = parseInt(detikLeft % 60, 10);
+                    minutes = parseInt(secondsLeft / 60, 10);
+                    seconds = parseInt(secondsLeft % 60, 10);
                 } else {
-                    haris = 0;
-                    jam = 0;
-                    menits = 0;
-                    detik = 0;
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
                     window.clearInterval(interval);
                     parameters.onEnd();
                 }
 
                 if (parameters.plural) {
-                    hariWord = haris > 1
-                        ? parameters.words.haris + parameters.words.pluralLetter
-                        : parameters.words.haris;
+                    dayWord = days > 1
+                        ? parameters.words.days + parameters.words.pluralLetter
+                        : parameters.words.days;
 
-                    hourWord = jam > 1
-                        ? parameters.words.jam + parameters.words.pluralLetter
-                        : parameters.words.jam;
+                    hourWord = hours > 1
+                        ? parameters.words.hours + parameters.words.pluralLetter
+                        : parameters.words.hours;
 
-                    menitWord = menits > 1
-                        ? parameters.words.menits + parameters.words.pluralLetter
-                        : parameters.words.menits;
+                    minuteWord = minutes > 1
+                        ? parameters.words.minutes + parameters.words.pluralLetter
+                        : parameters.words.minutes;
 
-                    secondWord = detik > 1
-                        ? parameters.words.detik + parameters.words.pluralLetter
-                        : parameters.words.detik;
+                    secondWord = seconds > 1
+                        ? parameters.words.seconds + parameters.words.pluralLetter
+                        : parameters.words.seconds;
 
                 } else {
-                    hariWord = parameters.words.haris;
-                    hourWord = parameters.words.jam;
-                    menitWord = parameters.words.menits;
-                    secondWord = parameters.words.detik;
+                    dayWord = parameters.words.days;
+                    hourWord = parameters.words.hours;
+                    minuteWord = parameters.words.minutes;
+                    secondWord = parameters.words.seconds;
                 }
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
                     countdown.innerHTML =
-                        haris + ' ' + hariWord + ', ' +
-                        jam + ' ' + hourWord + ', ' +
-                        menits + ' ' + menitWord + ', ' +
-                        detik + ' ' + secondWord + '.';
+                        days + ' ' + dayWord + ', ' +
+                        hours + ' ' + hourWord + ', ' +
+                        minutes + ' ' + minuteWord + ', ' +
+                        seconds + ' ' + secondWord + '.';
 
                 } else {
-                    fullCountDown.haris.amount.textContent = (parameters.zeroPad && haris.toString().length < 2 ? '0' : '') + haris;
-                    fullCountDown.haris.word.textContent = hariWord;
+                    fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
+                    fullCountDown.days.word.textContent = dayWord;
 
-                    fullCountDown.jam.amount.textContent = (parameters.zeroPad && jam.toString().length < 2 ? '0' : '') + jam;
-                    fullCountDown.jam.word.textContent = hourWord;
+                    fullCountDown.hours.amount.textContent = (parameters.zeroPad && hours.toString().length < 2 ? '0' : '') + hours;
+                    fullCountDown.hours.word.textContent = hourWord;
 
-                    fullCountDown.menits.amount.textContent = (parameters.zeroPad && menits.toString().length < 2 ? '0' : '') + menits;
-                    fullCountDown.menits.word.textContent = menitWord;
+                    fullCountDown.minutes.amount.textContent = (parameters.zeroPad && minutes.toString().length < 2 ? '0' : '') + minutes;
+                    fullCountDown.minutes.word.textContent = minuteWord;
 
-                    fullCountDown.detik.amount.textContent = (parameters.zeroPad && detik.toString().length < 2 ? '0' : '') + detik;
-                    fullCountDown.detik.word.textContent = secondWord;
+                    fullCountDown.seconds.amount.textContent = (parameters.zeroPad && seconds.toString().length < 2 ? '0' : '') + seconds;
+                    fullCountDown.seconds.word.textContent = secondWord;
                 }
             };
 
